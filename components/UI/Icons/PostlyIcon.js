@@ -5,7 +5,12 @@ const PostlyIcon = ({ imageContainerStyle, imageSelfStyle }) => {
   const imageSource = "../../../assets/Postly_General.png";
 
   return (
-    <View style={imageContainerStyle}>
+    <View
+      style={{
+        width: imageContainerStyle,
+        height: imageContainerStyle,
+      }}
+    >
       <Image style={imageSelfStyle} source={require(imageSource)} />
     </View>
   );

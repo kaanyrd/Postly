@@ -13,7 +13,11 @@ const ScreenOuter = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={Home}></Stack.Screen>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ headerShown: false }}
+        ></Stack.Screen>
         <Stack.Screen name="Login" component={Login}></Stack.Screen>
         <Stack.Screen name="SignIn" component={SignIn}></Stack.Screen>
         <Stack.Screen

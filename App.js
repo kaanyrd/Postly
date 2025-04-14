@@ -1,14 +1,17 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import ColorsExample from "./components/Staff/ColorsExample";
 import ScreenOuter from "./screens/ScreenOuter";
+import ScreenContextProvider from "./store/Context/ScreenContext";
 
 export default function App() {
   return (
     <>
-      <ScreenOuter />
-      {/* <ColorsExample /> */}
-      <StatusBar style="auto" />
+      <ScreenContextProvider>
+        <ScreenOuter />
+        {/* <ColorsExample /> */}
+        <StatusBar style="auto" />
+      </ScreenContextProvider>
     </>
   );
 }
