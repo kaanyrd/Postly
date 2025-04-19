@@ -9,5 +9,11 @@ export const screenIconSizer = (incomingSize) => {
 };
 
 export const screenTextSizer = (incomingSize) => {
-  // burada kalındı
+  if (incomingSize.small) {
+    return 14;
+  } else if (incomingSize.medium) {
+    return 20;
+  } else {
+    return 24;
+  }
 };

@@ -18,11 +18,20 @@ const ScreenOuter = () => {
           component={Home}
           options={{ headerShown: false }}
         ></Stack.Screen>
-        <Stack.Screen name="Login" component={Login}></Stack.Screen>
-        <Stack.Screen name="SignIn" component={SignIn}></Stack.Screen>
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{ headerShown: false }}
+        ></Stack.Screen>
+        <Stack.Screen
+          name="SignIn"
+          component={SignIn}
+          options={{ headerShown: false }}
+        ></Stack.Screen>
         <Stack.Screen
           name="ForgetPassword"
           component={ForgetPassword}
+          options={{ headerShown: false }}
         ></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

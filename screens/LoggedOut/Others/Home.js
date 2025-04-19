@@ -5,12 +5,19 @@ import { useNavigation } from "@react-navigation/native";
 import PostlyIcon from "../../../components/UI/Icons/PostlyIcon";
 import SafeArea from "../../../components/UI/SafeArea/SafeArea";
 import { ScreenContext } from "../../../store/Context/ScreenContext";
-import { screenIconSizer } from "../../../util/GeneralFunctions";
+import {
+  screenIconSizer,
+  screenTextSizer,
+} from "../../../util/GeneralFunctions";
+import Paragraph from "../../../components/UI/Text/Paragraph";
+import Divider from "../../../components/UI/Divider/Divider";
+import { Light_Theme } from "../../../constants/General_Styles";
 
 const Home = () => {
   const navigation = useNavigation();
   let screenData = useContext(ScreenContext);
   let screenSize = screenIconSizer(screenData);
+  let textSize = screenTextSizer(screenData);
 
   const navigateToLogin = (incomingScreenName) => {
     navigation.replace(incomingScreenName);
@@ -23,22 +30,37 @@ const Home = () => {
           imageContainerStyle={screenSize}
           imageSelfStyle={styles.imageSelf}
         />
-        <Text>Postly</Text>
-        <Text>Kimin ne düşündüğünü ilk sen öğren</Text>
-        <Text>Postly'e Giriş Yap</Text>
+        <Paragraph
+          fontSize={textSize + 8}
+          fontWeight="bold"
+          style={styles.title}
+        >
+          Postly
+        </Paragraph>
+        <Paragraph fontSize={textSize} style={styles.title}>
+          Kimin ne düşündüğünü ilk sen öğren
+        </Paragraph>
+        <Paragraph fontSize={textSize - 2} style={styles.motto}>
+          Postly'e Giriş Yap
+        </Paragraph>
         <Button
           incomingStyle={styles.buttonStyle}
           onPressHandler={() => navigateToLogin("SignIn")}
         >
-          Kayıt Ol
+          <Paragraph fontSize={textSize}>Kayıt Ol</Paragraph>
         </Button>
-        <Text>veya</Text>
-        <Text>Bir hesabın zaten var mı?</Text>
+        <Paragraph fontSize={textSize - 6} style={styles.orText}>
+          veya
+        </Paragraph>
+        <Divider styles={styles.divider} />
+        <Paragraph fontSize={textSize - 2} style={styles.alreadyText}>
+          Bir hesabın zaten var mı?
+        </Paragraph>
         <Button
           incomingStyle={styles.buttonStyle}
           onPressHandler={() => navigateToLogin("Login")}
         >
-          Giriş Yap
+          <Paragraph fontSize={textSize}>Giriş Yap</Paragraph>
         </Button>
       </View>
     </SafeArea>
@@ -66,5 +88,22 @@ const styles = StyleSheet.create({
     width: 150,
     padding: 8,
     textAlign: "center",
+  },
+  title: {
+    marginVertical: 6,
+  },
+  motto: {
+    marginBottom: 18,
+  },
+  orText: {
+    marginVertical: 4,
+  },
+  alreadyText: {
+    marginVertical: 8,
+  },
+  divider: {
+    width: "80%",
+    height: 5,
+    backgroundColor: Light_Theme.primary,
   },
 });
