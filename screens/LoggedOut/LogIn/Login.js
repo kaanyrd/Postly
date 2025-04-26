@@ -15,16 +15,22 @@ import { Light_Theme } from "../../../constants/General_Styles";
 import KeyboardModal from "../../../components/UI/Keyboar/KeyboardModal";
 import EmailInputModal from "../../../components/UI/Input/EmailInputModal";
 import PasswordInputModal from "../../../components/UI/Input/PasswordInputModal";
+import { LoginContext } from "../../../store/Context/LoginContextTemporarily";
 
 const Login = () => {
   const navigation = useNavigation();
   let screenData = useContext(ScreenContext);
+  let { setLoggedIn } = useContext(LoginContext);
   let screenSize = screenIconSizer(screenData);
   let textSize = screenTextSizer(screenData);
   const [formValid, setFormValid] = useState(false);
 
   const onNavigateHandler = (incomingScreenName) => {
     navigation.replace(incomingScreenName);
+  };
+
+  const logIn = () => {
+    setLoggedIn(true);
   };
 
   return (
@@ -47,7 +53,10 @@ const Login = () => {
           styles={[styles.inputStyle, { height: textSize + 20 }]}
         />
         {formValid && <Text>Error hint</Text>}
-        <Button incomingStyle={styles.buttonStyle}>
+        <Button
+          onPressHandler={() => logIn()}
+          incomingStyle={styles.buttonStyle}
+        >
           <Paragraph fontSize={textSize}>Giriş Yap</Paragraph>
         </Button>
         <Button
