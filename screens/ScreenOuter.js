@@ -15,6 +15,7 @@ import Favourites from "./LoggedIn/Favourites/Favourites";
 import Search from "./LoggedIn/Search/Search";
 import Notifications from "./LoggedIn/Notifications/Notifications";
 import Messages from "./LoggedIn/Messages/Messages";
+import Header from "../components/UI/Header/Header";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -25,7 +26,7 @@ const ScreenOuter = () => {
   const LoggedScreen = () => {
     return (
       <NavigationContainer>
-        <Tab.Navigator initialRouteName="Time">
+        <Tab.Navigator initialRouteName="DrawerScreen">
           <Tab.Screen name="Time" component={Time}></Tab.Screen>
           <Tab.Screen name="Search" component={Search}></Tab.Screen>
           <Tab.Screen
@@ -33,6 +34,11 @@ const ScreenOuter = () => {
             component={Notifications}
           ></Tab.Screen>
           <Tab.Screen name="Messages" component={Messages}></Tab.Screen>
+          <Tab.Screen
+            name="DrawerScreen"
+            component={DrawerScreen}
+            options={{ headerShown: false }}
+          ></Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
     );
@@ -41,8 +47,16 @@ const ScreenOuter = () => {
   const DrawerScreen = () => {
     return (
       <Drawer.Navigator>
-        <Drawer.Screen name="Profil" component={Profile} />
-        <Drawer.Screen name="Favourites" component={Favourites} />
+        <Drawer.Screen
+          name="Profil"
+          component={Profile}
+          options={{ header: () => <Header /> }}
+        />
+        <Drawer.Screen
+          name="Favourites"
+          component={Favourites}
+          options={{ header: () => <Header /> }}
+        />
       </Drawer.Navigator>
     );
   };

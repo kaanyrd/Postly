@@ -1,19 +1,25 @@
-import { StyleSheet, Text, View } from "react-native";
+import { Button, StyleSheet, Text, View } from "react-native";
 import React, { useContext } from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import PostlyIcon from "../Icons/PostlyIcon";
 import { ScreenContext } from "../../../store/Context/ScreenContext";
 import { screenIconSizer } from "../../../util/GeneralFunctions";
+import { useNavigation } from "@react-navigation/native";
 
 const Header = () => {
   const insets = useSafeAreaInsets();
+  const navigation = useNavigation();
   let screenData = useContext(ScreenContext);
   let screenSize = screenIconSizer(screenData);
+
+  const openDrawer = () => {
+    navigation.openDrawer();
+  };
 
   console.log("deneme", insets);
   return (
     <View style={[styles.headerContainer, { marginTop: insets.top }]}>
-      <Text>😎</Text>
+      <Button title="Drawer" onPress={() => openDrawer()} />
       <View style={[styles.imgOverflow, { borderRadius: screenSize / 4 }]}>
         <PostlyIcon
           imageContainerStyle={screenSize / 2}
