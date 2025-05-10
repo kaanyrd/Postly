@@ -47,16 +47,8 @@ const ScreenOuter = () => {
   const DrawerScreen = () => {
     return (
       <Drawer.Navigator>
-        <Drawer.Screen
-          name="Profil"
-          component={Profile}
-          options={{ header: () => <Header /> }}
-        />
-        <Drawer.Screen
-          name="Favourites"
-          component={Favourites}
-          options={{ header: () => <Header /> }}
-        />
+        <Drawer.Screen name="Profil" component={Profile} />
+        <Drawer.Screen name="Favourites" component={Favourites} />
       </Drawer.Navigator>
     );
   };
