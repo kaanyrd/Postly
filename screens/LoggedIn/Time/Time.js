@@ -2,6 +2,7 @@ import { Button, StyleSheet, Text, View } from "react-native";
 import React, { useContext } from "react";
 import { LoginContext } from "../../../store/Context/LoginContextTemporarily";
 import SafeArea from "../../../components/UI/SafeArea/SafeArea";
+import TimeContent from "../../../components/UI/TimeContent/TimeContent";
 
 const Time = () => {
   const { setLoggedIn } = useContext(LoginContext);
@@ -15,6 +16,7 @@ const Time = () => {
       <View stlye={styles.container}>
         <Text>Welcome to Postly</Text>
         <Button title="Çıkış" onPress={logOut} />
+        <TimeContent />
       </View>
     </SafeArea>
   );
