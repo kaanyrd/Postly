@@ -16,7 +16,6 @@ const Header = () => {
     navigation.openDrawer();
   };
 
-  console.log("deneme", insets);
   return (
     <View style={[styles.headerContainer, { marginTop: insets.top }]}>
       <Button title="Drawer" onPress={() => openDrawer()} />

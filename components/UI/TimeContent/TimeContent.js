@@ -1,86 +1,7 @@
 import { StyleSheet, FlatList, View, Image, Text } from "react-native";
-import React from "react";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
-const TimeContent = ({}) => {
-  const posts = [
-    {
-      postId: 1,
-      postedProfileId: 1,
-      postedProfilePhoto: "https://randomuser.me/api/portraits/men/1.jpg",
-      postedProfileUserName: "Kaan Yardımcı",
-      postedProfileNickName: "kaanyrd",
-      postedTime: "19.05.2025",
-      post: {
-        imageUrl: "https://picsum.photos/300/200?random=1",
-        videoUrl: "",
-        content:
-          "Bugün 19 Mayıs! Atatürk'ü Anma, Gençlik ve Spor Bayramımız kutlu olsun! 🇹🇷",
-        likes: 15,
-        comments: 10,
-      },
-    },
-    {
-      postId: 2,
-      postedProfileId: 2,
-      postedProfilePhoto: "https://randomuser.me/api/portraits/women/2.jpg",
-      postedProfileUserName: "Elif Kaya",
-      postedProfileNickName: "elifkaya",
-      postedTime: "18.05.2025",
-      post: {
-        imageUrl: "",
-        videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
-        content: "Bugünkü vlogum yayında! 🎥 #dailyvlog",
-        likes: 42,
-        comments: 5,
-      },
-    },
-    {
-      postId: 3,
-      postedProfileId: 3,
-      postedProfilePhoto: "https://randomuser.me/api/portraits/men/3.jpg",
-      postedProfileUserName: "Mert Demir",
-      postedProfileNickName: "mertdmr",
-      postedTime: "17.05.2025",
-      post: {
-        imageUrl: "https://picsum.photos/300/200?random=2",
-        videoUrl: "",
-        content: "Yeni kitabım çıktı! 📚 Okuyanlar yorum bırakmayı unutmasın.",
-        likes: 120,
-        comments: 24,
-      },
-    },
-    {
-      postId: 4,
-      postedProfileId: 4,
-      postedProfilePhoto: "https://randomuser.me/api/portraits/women/4.jpg",
-      postedProfileUserName: "Ayşe Yılmaz",
-      postedProfileNickName: "ayseyilmaz",
-      postedTime: "17.05.2025",
-      post: {
-        imageUrl: "https://picsum.photos/300/200?random=3",
-        videoUrl: "",
-        content: "Gün batımında huzur 🌅",
-        likes: 89,
-        comments: 12,
-      },
-    },
-    {
-      postId: 5,
-      postedProfileId: 5,
-      postedProfilePhoto: "https://randomuser.me/api/portraits/men/5.jpg",
-      postedProfileUserName: "Ali Vural",
-      postedProfileNickName: "alivrl",
-      postedTime: "16.05.2025",
-      post: {
-        imageUrl: "",
-        videoUrl: "",
-        content: "Yeni bir haftaya başlarken enerjinizi yüksek tutun! 💪",
-        likes: 33,
-        comments: 7,
-      },
-    },
-  ];
-
+const TimeContent = ({ posts }) => {
   return (
     <FlatList
       data={posts}
@@ -94,9 +15,13 @@ const TimeContent = ({}) => {
                 source={{ uri: item.item.postedProfilePhoto }}
               />
               <View style={styles.profileInfo}>
-                <Text>{item.item.postedProfileUserName}</Text>
-                <Text>{item.item.postedProfileNickName}</Text>
-                <Text>{item.item.postedTime}</Text>
+                <View style={styles.profileInfoContent}>
+                  <Text>{item.item.postedProfileUserName}</Text>
+                  <Text style={styles.lightText}>
+                    @{item.item.postedProfileNickName}
+                  </Text>
+                </View>
+                <Text style={styles.timeSpan}>● {item.item.postedTime}</Text>
               </View>
             </View>
             <View style={styles.content}>
@@ -107,9 +32,25 @@ const TimeContent = ({}) => {
               />
             </View>
             <View style={styles.bottomContent}>
-              <Text>Like</Text>
-              <Text>Comment</Text>
-              <Text>Share</Text>
+              <View style={styles.bottomContentLeft}>
+                <View style={styles.likeButtonContainer}>
+                  <Image
+                    style={styles.likeButton}
+                    source={require("../../../assets/Postly_Without_Background.png")}
+                  />
+                  <Text>312</Text>
+                </View>
+                <View style={styles.likeButtonContainer}>
+                  <Ionicons name="pencil-sharp" size={24} color="" />
+                  <Text>12</Text>
+                </View>
+              </View>
+              <Ionicons
+                style={styles.shareButton}
+                name="share-social-outline"
+                size={24}
+                color=""
+              />
             </View>
           </View>
         );
@@ -120,15 +61,37 @@ const TimeContent = ({}) => {
 
 export default TimeContent;
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   post: {
-    borderWidth: 2,
-    borderColor: "green",
     padding: 8,
+    backgroundColor: "white",
+    elevation: 5,
+  },
+  bottomContent: {
+    padding: 8,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  bottomContentLeft: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  likeButtonContainer: {
+    flexDirection: "row",
+    gap: 2,
+  },
+  likeButton: {
+    width: 24,
+    height: 24,
+    backgroundColor: "yellow",
+  },
+  content: {
+    marginTop: 8,
+    gap: 8,
   },
   topContent: {
-    borderWidth: 1,
-    borderColor: "blue",
     flexDirection: "row",
     alignItems: "center",
   },
@@ -136,12 +99,28 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
+    marginRight: 8,
   },
   profileInfo: {
     flexDirection: "row",
+    justifyContent: "space-between",
+    flex: 1,
+  },
+  profileInfoContent: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 4,
   },
   contentImage: {
     width: "100%",
     height: 200,
   },
+  lightText: {
+    color: "gray",
+  },
+  timeSpan: {
+    color: "gray",
+    alignSelf: "flex-end",
+  },
+  shareButton: {},
 });
