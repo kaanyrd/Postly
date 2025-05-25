@@ -3,3 +3,5 @@
 3- Profile içerisindeki ScrollView ve FlatList kullanımını düzelt
 4- Time'a tweet atılması için bir button ekle.
 5- New Post modal ya da safyası yazılacak.
+6- New Post modal da layout sağlanacak. 
+7- 

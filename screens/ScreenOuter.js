@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import Home from "./LoggedOut/Others/Home";
 import Login from "./LoggedOut/LogIn/Login";
@@ -15,7 +15,6 @@ import Favourites from "./LoggedIn/Favourites/Favourites";
 import Search from "./LoggedIn/Search/Search";
 import Notifications from "./LoggedIn/Notifications/Notifications";
 import Messages from "./LoggedIn/Messages/Messages";
-import Header from "../components/UI/Header/Header";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
