@@ -15,6 +15,9 @@ import Favourites from "./LoggedIn/Favourites/Favourites";
 import Search from "./LoggedIn/Search/Search";
 import Notifications from "./LoggedIn/Notifications/Notifications";
 import Messages from "./LoggedIn/Messages/Messages";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -25,19 +28,65 @@ const ScreenOuter = () => {
   const LoggedScreen = () => {
     return (
       <NavigationContainer>
-        <Tab.Navigator initialRouteName="DrawerScreen">
+        <Tab.Navigator
+          initialRouteName="DrawerScreen"
+          screenOptions={{
+            tabBarActiveTintColor: "#D4A818",
+            tabBarInactiveTintColor: "black",
+            tabBarShowLabel: false,
+          }}
+        >
           <Tab.Screen
             name="DrawerScreen"
             component={DrawerScreen}
-            options={{ headerShown: false }}
+            options={{
+              headerShown: false,
+              tabBarIcon: ({ color }) => (
+                <AntDesign name="home" size={24} color={color} />
+              ),
+            }}
           ></Tab.Screen>
-          <Tab.Screen name="Time" component={Time}></Tab.Screen>
-          <Tab.Screen name="Search" component={Search}></Tab.Screen>
+          <Tab.Screen
+            name="Time"
+            component={Time}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons name="post" size={24} color={color} />
+              ),
+            }}
+          ></Tab.Screen>
+
+          <Tab.Screen
+            name="Search"
+            component={Search}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <AntDesign name="search1" size={24} color={color} />
+              ),
+            }}
+          ></Tab.Screen>
           <Tab.Screen
             name="Notifications"
             component={Notifications}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <Ionicons name="notifications" size={24} color={color} />
+              ),
+            }}
           ></Tab.Screen>
-          <Tab.Screen name="Messages" component={Messages}></Tab.Screen>
+          <Tab.Screen
+            name="Messages"
+            component={Messages}
+            options={{
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons
+                  name="android-messages"
+                  size={24}
+                  color={color}
+                />
+              ),
+            }}
+          ></Tab.Screen>
         </Tab.Navigator>
       </NavigationContainer>
     );

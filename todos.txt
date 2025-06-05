@@ -5,3 +5,12 @@
 5- New Post modal ya da safyası yazılacak.
 6- New Post modal da layout sağlanacak. 
 7- 
+
+1- Time responsive
+2- Profile responsive
+3- New Post Modal responsive
+5- Drawer Bar Icons
+6- Expo güncelle
+7- Favourites
+8- Open Post
+9- Share Button?

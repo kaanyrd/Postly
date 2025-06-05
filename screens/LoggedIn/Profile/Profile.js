@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   FlatList,
   Image,
@@ -7,6 +8,7 @@ import {
   View,
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import PostModal from "../../../components/Modals/PostModal";
 
 const Profile = () => {
   const posts = [
@@ -87,93 +89,109 @@ const Profile = () => {
       },
     },
   ];
+  const [postModal, setPostModal] = useState(false);
+
+  const openModalFunction = () => {
+    setPostModal(true);
+  };
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={posts}
-        keyExtractor={(item) => item.postId.toString()}
-        ListHeaderComponent={
-          <View>
-            <View style={styles.topContainer}>
-              <Image
-                source={{ uri: "https://picsum.photos/300/200?random=1" }}
-                style={styles.wallpaper}
-              />
-              <Image
-                source={{
-                  uri: "https://randomuser.me/api/portraits/men/0.jpg",
-                }}
-                style={styles.pp}
-              />
-            </View>
-            <View style={styles.bottomContainer}>
-              <View style={styles.profileInfo}>
-                <View>
-                  <Text>
-                    Kaan Yardımcı <Text style={styles.lightText}>@kaanyrd</Text>
-                  </Text>
-                </View>
-                <View style={styles.profileInfos}>
-                  <Text>Istanbul, 19/05/2025 Tarihinde katıldı</Text>
-                </View>
-                <View style={styles.followers}>
-                  <Text>408 Takip edilen</Text>
-                  <Text>8 Takipçi</Text>
-                </View>
-              </View>
-              <Text>Belki buraya bir bar? Retweet, Likes, Saved</Text>
-            </View>
-          </View>
-        }
-        renderItem={({ item }) => (
-          <View style={styles.post}>
-            <View style={styles.topContent}>
-              <Image
-                style={styles.ppImage}
-                source={{ uri: item.postedProfilePhoto }}
-              />
-              <View style={styles.postInfo}>
-                <View style={styles.profileInfoContent}>
-                  <Text>{item.postedProfileUserName}</Text>
-                  <Text style={styles.lightText}>
-                    @{item.postedProfileNickName}
-                  </Text>
-                </View>
-                <Text style={styles.timeSpan}>● {item.postedTime}</Text>
-              </View>
-            </View>
-            <View style={styles.content}>
-              <Text>{item.post.content}</Text>
-              <Image
-                style={styles.contentImage}
-                source={{ uri: item.post.imageUrl }}
-              />
-            </View>
-            <View style={styles.bottomContent}>
-              <View style={styles.bottomContentLeft}>
-                <View style={styles.likeButtonContainer}>
+    <>
+      {postModal ? (
+        <PostModal setPostModal={setPostModal} postModal={postModal} />
+      ) : (
+        <View style={styles.container}>
+          <FlatList
+            data={posts}
+            keyExtractor={(item) => item.postId.toString()}
+            ListHeaderComponent={
+              <View>
+                <View style={styles.topContainer}>
                   <Image
-                    style={styles.likeButton}
-                    source={require("../../../assets/Postly_Without_Background.png")}
+                    source={{ uri: "https://picsum.photos/300/200?random=1" }}
+                    style={styles.wallpaper}
                   />
-                  <Text>312</Text>
+                  <Image
+                    source={{
+                      uri: "https://randomuser.me/api/portraits/men/0.jpg",
+                    }}
+                    style={styles.pp}
+                  />
                 </View>
-                <View style={styles.likeButtonContainer}>
-                  <Ionicons name="pencil-sharp" size={24} />
-                  <Text>12</Text>
+                <View style={styles.bottomContainer}>
+                  <View style={styles.profileInfo}>
+                    <View>
+                      <Text>
+                        Kaan Yardımcı{" "}
+                        <Text style={styles.lightText}>@kaanyrd</Text>
+                      </Text>
+                    </View>
+                    <View style={styles.profileInfos}>
+                      <Text>Istanbul, 19/05/2025 Tarihinde katıldı</Text>
+                    </View>
+                    <View style={styles.followers}>
+                      <Text>408 Takip edilen</Text>
+                      <Text>8 Takipçi</Text>
+                    </View>
+                  </View>
+                  <Text>Belki buraya bir bar? Retweet, Likes, Saved</Text>
                 </View>
               </View>
-              <Ionicons
-                style={styles.shareButton}
-                name="share-social-outline"
-                size={24}
-              />
-            </View>
-          </View>
-        )}
-      />
-    </View>
+            }
+            renderItem={({ item }) => (
+              <View style={styles.post}>
+                <View style={styles.topContent}>
+                  <Image
+                    style={styles.ppImage}
+                    source={{ uri: item.postedProfilePhoto }}
+                  />
+                  <View style={styles.postInfo}>
+                    <View style={styles.profileInfoContent}>
+                      <Text>{item.postedProfileUserName}</Text>
+                      <Text style={styles.lightText}>
+                        @{item.postedProfileNickName}
+                      </Text>
+                    </View>
+                    <Text style={styles.timeSpan}>● {item.postedTime}</Text>
+                  </View>
+                </View>
+                <View style={styles.content}>
+                  <Text>{item.post.content}</Text>
+                  <Image
+                    style={styles.contentImage}
+                    source={{ uri: item.post.imageUrl }}
+                  />
+                </View>
+                <View style={styles.bottomContent}>
+                  <View style={styles.bottomContentLeft}>
+                    <View style={styles.likeButtonContainer}>
+                      <Image
+                        style={styles.likeButton}
+                        source={require("../../../assets/Postly_Without_Background.png")}
+                      />
+                      <Text>312</Text>
+                    </View>
+                    <View style={styles.likeButtonContainer}>
+                      <Ionicons
+                        onPress={openModalFunction}
+                        name="pencil-sharp"
+                        size={24}
+                      />
+                      <Text>12</Text>
+                    </View>
+                  </View>
+                  <Ionicons
+                    style={styles.shareButton}
+                    name="share-social-outline"
+                    size={24}
+                  />
+                </View>
+              </View>
+            )}
+          />
+        </View>
+      )}
+    </>
   );
 };
 
